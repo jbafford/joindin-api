@@ -130,14 +130,13 @@ insert into event_comments (
 
 /* Insert related talk data */
 insert into talks (
-	talk_title,speaker,slides_link,
+	talk_title,speaker,
 	date_given,event_id,talk_desc,
 	active,owner_id,lang,
 	ID
 ) values (
 	'Sample Talk #1 from Seed Load',
 	'John Doe',
-	'http://slideshare.com',
 	unix_timestamp(),
 	@evtid,
 	'This is sample talk #1 from the seed load. This description is here to provide an example.',
@@ -172,15 +171,22 @@ insert into talk_cat (
     NULL
 );
 
+insert into talk_links (
+    talk_id, link_type_id, link_url
+) values (
+    @ftalkid,
+    1,
+    'http://slideshare.com'
+);
+
 insert into talks (
-	talk_title,speaker,slides_link,
+	talk_title,speaker,
 	date_given,event_id,talk_desc,
 	active,owner_id,lang,
 	ID
 ) values (
 	'Sample Talk #2 from Seed Load',
 	'Jane Doe',
-	'http://slideshare.com',
 	unix_timestamp(),
 	@evtid,
 	'This is sample talk #2 from the seed load. This description is here to provide an example.',
@@ -209,6 +215,14 @@ insert into talk_cat (
     @stalkid,
     1,
     NULL
+);
+
+insert into talk_links (
+    talk_id, link_type_id, link_url
+) values (
+    @stalkid,
+    1,
+    'http://slideshare.com'
 );
 
 /* ----------------------------------*/
